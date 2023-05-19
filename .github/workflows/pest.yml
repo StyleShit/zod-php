@@ -1,0 +1,21 @@
+name: Pest
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    name: Pest
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@master
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.1
+      - name: Install Dependencies
+        run: |
+          composer install
+      - name: Test
+        run: |
+          composer test -- --ci
