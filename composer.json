@@ -1,0 +1,25 @@
+{
+    "require-dev": {
+        "laravel/pint": "^1.2",
+        "pestphp/pest": "^1.22"
+    },
+    "scripts": {
+        "lint": "pint",
+        "test": "pest"
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "StyleShit\\Zod\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "StyleShit\\Zod\\Tests\\": "tests"
+        }
+    }
+  }
