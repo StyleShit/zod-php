@@ -3,20 +3,25 @@
 namespace StyleShit\Zod\Schemas;
 
 use StyleShit\Zod\Exceptions\InvalidObjectException;
+use StyleShit\Zod\Exceptions\InvalidObjectSchemaException;
 
 class ObjectSchema extends Schema
 {
     /**
-     * @var Schema[]|null
+     * @var Schema[]
      */
     private $schema;
 
-    public function __construct($schema = null)
+    public function __construct($schema = [])
     {
+        if (! $this->isValidSchemasArray($schema)) {
+            throw InvalidObjectSchemaException::make($schema);
+        }
+
         $this->schema = $schema;
     }
 
-    public static function make($schema = null)
+    public static function make($schema = [])
     {
         return new static($schema);
     }
@@ -29,10 +34,6 @@ class ObjectSchema extends Schema
 
         if (! is_object($value)) {
             throw InvalidObjectException::make($value);
-        }
-
-        if (is_null($this->schema)) {
-            return $value;
         }
 
         $parsedValue = new \stdClass();
@@ -67,5 +68,20 @@ class ObjectSchema extends Schema
         }
 
         return (object) $value;
+    }
+
+    private function isValidSchemasArray($schema)
+    {
+        if (! $this->isAssociativeArray($schema)) {
+            return false;
+        }
+
+        foreach ($schema as $item) {
+            if (! ($item instanceof Schema)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }

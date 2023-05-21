@@ -8,7 +8,7 @@ use StyleShit\Zod\Schemas\StringSchema;
 
 class Zod
 {
-    public static function object($schema = null)
+    public static function object($schema = [])
     {
         return ObjectSchema::make($schema);
     }
