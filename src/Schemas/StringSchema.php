@@ -2,12 +2,11 @@
 
 namespace StyleShit\Zod\Schemas;
 
-use StyleShit\Zod\Contracts\Schema;
 use StyleShit\Zod\Exceptions\InvalidStringException;
 use StyleShit\Zod\Exceptions\LongStringException;
 use StyleShit\Zod\Exceptions\ShortStringException;
 
-class StringSchema implements Schema
+class StringSchema extends Schema
 {
     private $min;
 
@@ -32,7 +31,7 @@ class StringSchema implements Schema
         return $this;
     }
 
-    public function parse($value)
+    protected function parseValue($value)
     {
         if (! is_string($value)) {
             throw InvalidStringException::make($value);

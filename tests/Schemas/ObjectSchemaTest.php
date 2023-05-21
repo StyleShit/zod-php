@@ -52,6 +52,55 @@ it('should parse an associative array as object', function () {
     ]);
 });
 
+it('should support optional keys', function () {
+    // Act.
+    $result = Z::object([
+        'name' => Z::string()->optional(),
+        'age' => Z::number()->optional(),
+    ])->parse([]);
+
+    // Assert.
+    expect($result)->toEqual((object) [
+        'name' => null,
+        'age' => null,
+    ]);
+});
+
+it('should support required keys', function () {
+    // Arrange.
+    $name = Z::string()->optional();
+    $age = Z::number()->optional();
+
+    // Act & Assert.
+    expect(function () use ($name, $age) {
+        Z::object([
+            'name' => $name->required(),
+            'age' => $age->required(),
+        ])->parse([]);
+    })->toThrow(\Exception::class);
+});
+
+it('should support default values', function () {
+    // Act.
+    $result = Z::object([
+        'name' => Z::string()->default('John Doe'),
+        'age' => Z::number()->default(42),
+    ])->parse([]);
+
+    // Assert.
+    expect($result)->toEqual((object) [
+        'name' => 'John Doe',
+        'age' => 42,
+    ]);
+});
+
+it('should throw when passing invalid default value', function () {
+    // Act & Assert.
+    expect(function () {
+        Z::object()->default('test');
+    })->toThrow(InvalidObjectException::class);
+});
+
 it('should throw for non-objects', function () {
     // Act & Assert.
     expect(function () {

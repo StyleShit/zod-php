@@ -2,10 +2,9 @@
 
 namespace StyleShit\Zod\Schemas;
 
-use StyleShit\Zod\Contracts\Schema;
 use StyleShit\Zod\Exceptions\InvalidObjectException;
 
-class ObjectSchema implements Schema
+class ObjectSchema extends Schema
 {
     /**
      * @var Schema[]|null
@@ -22,7 +21,7 @@ class ObjectSchema implements Schema
         return new static($schema);
     }
 
-    public function parse($value)
+    protected function parseValue($value)
     {
         if ($this->isAssociativeArray($value)) {
             $value = $this->arrayToObject($value);
@@ -39,7 +38,7 @@ class ObjectSchema implements Schema
         $parsedValue = new \stdClass();
 
         foreach ($this->schema as $key => $parser) {
-            $parsedValue->$key = $parser->parse($value->$key);
+            $parsedValue->$key = $parser->parse($value->$key ?? null);
         }
 
         return $parsedValue;

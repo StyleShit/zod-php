@@ -2,12 +2,11 @@
 
 namespace StyleShit\Zod\Schemas;
 
-use StyleShit\Zod\Contracts\Schema;
 use StyleShit\Zod\Exceptions\BigNumberException;
 use StyleShit\Zod\Exceptions\InvalidNumberException;
 use StyleShit\Zod\Exceptions\SmallNumberException;
 
-class NumberSchema implements Schema
+class NumberSchema extends Schema
 {
     private $min;
 
@@ -32,7 +31,7 @@ class NumberSchema implements Schema
         return $this;
     }
 
-    public function parse($value)
+    protected function parseValue($value)
     {
         if (! is_numeric($value)) {
             throw InvalidNumberException::make($value);
