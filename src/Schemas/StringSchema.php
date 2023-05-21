@@ -1,13 +1,13 @@
 <?php
 
-namespace StyleShit\Zod\Parsers;
+namespace StyleShit\Zod\Schemas;
 
-use StyleShit\Zod\Contracts\Parser;
+use StyleShit\Zod\Contracts\Schema;
 use StyleShit\Zod\Exceptions\InvalidStringException;
 use StyleShit\Zod\Exceptions\LongStringException;
 use StyleShit\Zod\Exceptions\ShortStringException;
 
-class StringParser implements Parser
+class StringSchema implements Schema
 {
     private $min;
 

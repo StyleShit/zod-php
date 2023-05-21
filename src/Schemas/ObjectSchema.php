@@ -1,14 +1,14 @@
 <?php
 
-namespace StyleShit\Zod\Parsers;
+namespace StyleShit\Zod\Schemas;
 
-use StyleShit\Zod\Contracts\Parser;
+use StyleShit\Zod\Contracts\Schema;
 use StyleShit\Zod\Exceptions\InvalidObjectException;
 
-class ObjectParser implements Parser
+class ObjectSchema implements Schema
 {
     /**
-     * @var Parser[]|null
+     * @var Schema[]|null
      */
     private $schema;
 

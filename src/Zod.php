@@ -2,24 +2,24 @@
 
 namespace StyleShit\Zod;
 
-use StyleShit\Zod\Parsers\NumberParser;
-use StyleShit\Zod\Parsers\ObjectParser;
-use StyleShit\Zod\Parsers\StringParser;
+use StyleShit\Zod\Schemas\NumberSchema;
+use StyleShit\Zod\Schemas\ObjectSchema;
+use StyleShit\Zod\Schemas\StringSchema;
 
 class Zod
 {
     public static function object($schema = null)
     {
-        return ObjectParser::make($schema);
+        return ObjectSchema::make($schema);
     }
 
     public static function string()
     {
-        return StringParser::make();
+        return StringSchema::make();
     }
 
     public static function number()
     {
-        return NumberParser::make();
+        return NumberSchema::make();
     }
 }

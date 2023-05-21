@@ -2,7 +2,7 @@
 
 namespace StyleShit\Zod\Contracts;
 
-interface Parser
+interface Schema
 {
     public function parse($value);
 }

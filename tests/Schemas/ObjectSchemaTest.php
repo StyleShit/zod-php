@@ -1,6 +1,6 @@
 <?php
 
-namespace StyleShit\Zod\Tests\Parsers;
+namespace StyleShit\Zod\Tests\Schemas;
 
 use StyleShit\Zod\Exceptions\InvalidObjectException;
 use StyleShit\Zod\Zod as Z;
