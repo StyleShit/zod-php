@@ -1,6 +1,6 @@
 # Zod-PHP
 
-A [Zod](https://github.com/colinhacks/zod)-like implemtation in PHP, inspired by [Laravel](https://github.com/laravel/framework/)'s code standards.
+A [Zod](https://github.com/colinhacks/zod)-like implementation in PHP, inspired by [Laravel](https://github.com/laravel/framework/)'s code standards.
 
 ## Usage:
 
